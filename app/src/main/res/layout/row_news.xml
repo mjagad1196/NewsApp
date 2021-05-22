@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        
+        <variable
+            name="item"
+            type="com.app.newsapp.data.local.NewsArticleDb" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="listener"
+            type="com.app.newsapp.utils.ItemClickListener" />
+
+        
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="6dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@android:color/white"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="12dp"
+        android:animateLayoutChanges="true"
+        android:id="@+id/cvContent"
+        android:onClick="@{ () -> listener.onItemClick(position)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/guideLineVertical"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.45"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/vImage"
+                android:scaleType="fitXY"
+                imageUrl="@{item.urlToImage}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/view"
+                android:background="#46000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTitle"
+                android:text="@{item.title}"
+                tools:text="Analysis: New meme stocks swing as shorts and retail investors face off again - Yahoo Finance"
+                android:maxLines="4"
+                android:layout_margin="8dp"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDescription"
+                android:text="@{item.description}"
+                tools:text="Analysis: New meme stocks swing as shorts and retail investors face off again - Yahoo Finance"
+                android:maxLines="3"
+                android:layout_margin="8dp"
+                android:paddingTop="10dp"
+                android:textSize="14sp"
+                android:ellipsize="end"
+                android:textColor="@color/description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvNewsSource"
+                android:text="@{item.source.name}"
+                tools:text="Yahoo Entertainment"
+                android:maxLines="1"
+                android:layout_margin="8dp"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideLineVertical"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTimeStamp"
+                android:text="@{item.publishedAt}"
+                tools:text="Yahoo Entertainment"
+                android:maxLines="1"
+                android:layout_margin="8dp"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:textColor="@color/white"
+                android:gravity="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guideLineVertical"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout >
+    </androidx.cardview.widget.CardView >
+    
+
+</layout>
